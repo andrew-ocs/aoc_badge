@@ -40,8 +40,8 @@ jobs:
             schemaVersion: 1,
             label: "AoC 2026",
             message: $msg,
-            labelColor: "1f7a45",
-            color: "c8282d",
+            labelColor: "c8282d",
+            color: "1f7a45",
             logoSvg: $logo
           }' > badge/aoc.json
           cat badge/aoc.json
