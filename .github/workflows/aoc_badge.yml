@@ -36,7 +36,10 @@ jobs:
           fi
 
           mkdir -p badge
-          jq -n --arg msg "$MSG" --rawfile logo badge/logo.svg '{
+          B64=$(base64 -w0 badge/logo.png)
+          LOGO="<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 100 100\" width=\"100\" height=\"100\"><image width=\"100\" height=\"100\" xlink:href=\"data:image/png;base64,${B64}\"/></svg>"
+
+          jq -n --arg msg "$MSG" --arg logo "$LOGO" '{
             schemaVersion: 1,
             label: "AoC 2026",
             message: $msg,
