@@ -36,7 +36,14 @@ jobs:
           fi
 
           mkdir -p badge
-          printf '{"schemaVersion":1,"label":"OC AoC 2026","message":"%s","color":"c8282d"}\n' "$MSG" > badge/aoc.json
+          jq -n --arg msg "$MSG" --rawfile logo badge/logo.svg '{
+            schemaVersion: 1,
+            label: "AoC 2026",
+            message: $msg,
+            labelColor: "1f7a45",
+            color: "c8282d",
+            logoSvg: $logo
+          }' > badge/aoc.json
           cat badge/aoc.json
 
       - name: Commit if changed
